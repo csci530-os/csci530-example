@@ -4,8 +4,9 @@
 *.tar.gz
 *.log
 *.out
-sim
-test
+map-example
+queue-stack
+vector-example
 \#*
 .\#*
 TODO.md

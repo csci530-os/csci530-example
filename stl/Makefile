@@ -1,8 +1,8 @@
 # compiler flags, tools and include variables
 GCC=g++
 GCC_FLAGS=-Wall -Werror -pedantic -g
-INCLUDES=-I../../include -I../../assg/assg02
-LINKS=-L../../libs -lSimulatorException
+INCLUDES=-I.
+LINKS=-L.
 
 BEAUTIFIER=uncrustify
 BEAUTIFIER_FLAGS=-c ../../config/.uncrustify.cfg --replace --no-backup
@@ -25,17 +25,22 @@ sources = vector-example.cpp
 ##                 make ps02semaphorestrong explicitly to build that target.
 ##
 .PHONY : all
-all : vector-example queue-stack
+all : vector-example queue-stack map-example
 
 ## vector-example : Build and link together vector example
 ##
-vector-example : vector-example.o ../../assg/assg02/Process.o ../../assg/assg02/ProcessState.o
-	$(GCC) $(GCC_FLAGS) vector-example.o ../../assg/assg02/Process.o ../../assg/assg02/ProcessState.o $(LINKS) -o $@
+vector-example : vector-example.o Process.o ProcessState.o
+	$(GCC) $(GCC_FLAGS) vector-example.o Process.o ProcessState.o $(LINKS) -o $@
 
 ## queue-stack    : Build and link together queue/stack example
 ##
 queue-stack : queue-stack.o
 	$(GCC) $(GCC_FLAGS) queue-stack.o $(LINKS) -o $@
+
+## map-example    : Build and link together map example
+##
+map-example : map-example.o Process.o ProcessState.o
+	$(GCC) $(GCC_FLAGS) map-example.o Process.o ProcessState.o $(LINKS) -o $@
 
 
 
@@ -54,7 +59,7 @@ beautify :
 ##
 .PHONY : clean
 clean  :
-	$(RM) vector-example queue-stack *.exe *.o *.gch *~
+	$(RM) vector-example queue-stack map *.exe *.o *.gch *~
 
 
 ## help         : Get all build targets supported by this build.
