@@ -60,7 +60,10 @@ ps02semaphorecond   : ps02-semaphore-cond.o
 beautify :
 	$(BEAUTIFIER) $(BEAUTIFIER_FLAGS) $(sources)
 
-
+## unit-tests   : Test the problem set 02 programs
+unit-tests: ps02
+	./ps02
+	
 ## clean        : Remove auto-generated files for a completely
 ##                clean rebuild
 ##
